@@ -1636,6 +1636,35 @@ static struct device_info boards[] = {
 		.last_sysupgrade_partition = "file-system"
 	},
 
+	/** Firmware layout for the EAP225-Outdoor v3 */
+	{
+		.id     = "EAP225-OUTDOOR-V3",
+		.support_list =
+			"SupportList:\r\n"
+			"EAP225-Outdoor(TP-Link|UN|AC1200-D):3.0\r\n",
+		.part_trail = PART_TRAIL_NONE,
+		.soft_ver = SOFT_VER_DEFAULT,
+		.soft_ver_compat_level = 1,
+
+		.partitions = {
+			{"fs-uboot", 0x00000, 0x20000},
+			{"partition-table", 0x20000, 0x02000},
+			{"default-mac", 0x30000, 0x01000},
+			{"support-list", 0x31000, 0x00100},
+			{"product-info", 0x31100, 0x00400},
+			{"soft-version", 0x32000, 0x00100},
+			{"firmware", 0x40000, 0xEC0000},
+			{"user-config", 0xf00000, 0x30000},
+			{"mutil-log", 0xf30000, 0x80000},
+			{"oops", 0xfb0000, 0x40000},
+			{"radio", 0xff0000, 0x10000},
+			{NULL, 0, 0}
+		},
+
+		.first_sysupgrade_partition = "os-image",
+		.last_sysupgrade_partition = "file-system"
+	},
+
 	/** Firmware layout for the EAP225 v1 */
 	{
 		.id     = "EAP225-V1",
